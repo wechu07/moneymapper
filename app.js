@@ -5,9 +5,10 @@ const path = require('path')
 const connectDB = require('./config/db')
 
 // connect the db
-connectDB()
+// connectDB()
 
 const app = express()
+const db = connectDB
 
 // HTTP request logger middleware 
 if (process.env.NODE_ENV === 'development') {
@@ -16,6 +17,19 @@ if (process.env.NODE_ENV === 'development') {
 
 // loading the config files
 dotenv.config({ path: './config/config.env' })
+
+app.get('/payments', (req, res) => {
+    const start = '2022-01-01'
+    const end = '2022-02-01'
+  
+    db.getPaymentsByPeriod(start, end, (err, rows) => {
+      if (err) {
+        res.status(500).json({ error: err.message })
+      } else {
+        res.json(rows)
+      }
+    })
+  })
 
 const port = process.env.PORT || 3000
 
