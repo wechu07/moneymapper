@@ -1,4 +1,5 @@
-const router = require('express')
+const express = require('express')
+const router = express.Router()
 const User = require('../models/User')
 
 router.post('/users', async (req,res) => {
@@ -9,3 +10,21 @@ router.post('/users', async (req,res) => {
         res.status(500).json(err)
     }
 })
+
+router.get('/users', async (req, res) => {
+    const users = await User.findAll()
+    res.send(users)
+})
+
+router.get('/users/:id', async (req, res) => {
+    const userId = await User.findById(req.params.id)
+    res.send(users)
+})
+
+
+router.put('/users/:id', async (req, res) => {
+    const userId = await User.findById(req.params.id)
+    
+})
+
+module.exports = router
