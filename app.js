@@ -62,6 +62,11 @@ app.put('/users/:id', async (req, res) => {
     res.send('user has been updated successfully')
 })
 
+app.delete('/users/:id', async (req, res) => {
+  const userId = req.params.id
+  await User.destroy({ where: { id: userId}})
+  res.send('user deleted successfully')
+})
 
 const port = process.env.PORT || 3000
 
