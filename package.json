@@ -5,7 +5,8 @@
     "express": "^4.18.2",
     "morgan": "^1.10.0",
     "sequelize": "^6.28.0",
-    "sqlite3": "^5.1.4"
+    "sqlite3": "^5.1.4",
+    "unirest": "^0.6.0"
   },
   "name": "moneymapper",
   "version": "1.0.0",
